@@ -1,7 +1,31 @@
 var hist;
 
 $(document).ready(function() {
-	 //Original data
+	// tops urls and visit counts init
+	var urls = [];
+    var visited = [];
+	var sorted = [];
+    // gets whole history and sorts
+	chrome.history.search({"text": "", "maxResults": 10000}, 
+    function(historyItems) {
+    	temp_url = [];
+    	temp_count = [];
+    	sorted = historyItems.slice(6).sort(function(a,b){
+    		return a.visitCount - b.visitCount;
+    	});
+    	//console.log(JSON.stringify(sorted[0]));
+    	var count = 0;
+    	for (var i = sorted.length - 1, len = sorted.length - 11; i > len; i--){
+    		temp_url.push(sorted[i].url);
+    		temp_count.push(sorted[i].visitCount);
+	      	console.log(temp_url[count]);
+	      	console.log(sorted[i].visitCount);
+	      	count++;
+	   	}
+	   	visited = temp_count.slice();
+	   	urls = temp_url.slice();
+	   	
+    
      var w = window.innerWidth;
      var h = 600;
       var dataset = {
@@ -53,7 +77,7 @@ $(document).ready(function() {
         .style("stroke-width", 1);
       
       var nodes = svg.selectAll("circle")
-        .data(dataset.circleRadii)
+        .data(visited)
         .enter()
         .append("circle")
         .attr("r", function(d) { return d;})
@@ -82,10 +106,7 @@ $(document).ready(function() {
            .attr("cy", function(d) { return d.y; });
   
       });
-  hist = chrome.history.search({"text": "", "maxResults": 10000}, 
-    function(historyItems) {
-      //alert(historyItems.length);
-      console.log(JSON.stringify(historyItems));
-    });
+
+});
 
 });
