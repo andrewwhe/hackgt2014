@@ -1,1 +1,30 @@
+body {
+  font-family: "Open Sans" !important;
+  background: #1E1F1E !important;
+}
 
+.header-bar {
+  background: #1E1F1E;
+  height: 50px;
+  color: #ffffff;
+  padding-top: 15px;
+  font-size: 20px;
+}
+
+
+.wrapper h1 {
+  margin-top: 0px !important;
+  font-size: 70px;
+  color: #FFB80D;
+}
+.wrapper small {
+  font-size: 16px;
+  color: #f3f3f3;
+}
+
+
+.full-section {
+  height: 600px;
+  width: 100%;
+  background: #0F0F0F;
+}
