@@ -1,1 +1,1 @@
-chrome.tabs.create({});
+chrome.tabs.create({'url': chrome.extension.getURL('../index.html')});
