@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "History Visualizer",
+  "description": "Creates snazzy visualizations of your browsing history.",
+  "version": "0.1",
+
+  "permissions": [
+    "history",
+    "tabs"
+  ],
+
+  "browser_action": {
+    "default_icon": "placeholder-icon.png",
+    "default_popup": "popup.html"
+  }
+
+}
