@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="css/style.css">    
     <link rel="stylesheet" href="css/foundation.min.css">    
     <link rel="stylesheet" href="css/normalize.css">    
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans" type="text/css">
 
     <script type="text/javascript" src="js/vendor/jquery.js"></script>
     <script type="text/javascript" src="js/foundation.min.js"></script>
@@ -13,10 +12,11 @@
 =======
 >>>>>>> 819e0cdcbcf45474e666054e066d233be0afc227
     <script type="text/javascript" src="d3.min.js"></script>
-     
   </head>
   <body>
+  	
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div class="wrapper"> 
   
@@ -34,22 +34,10 @@
       var w = 1200;
       var h = 1200;
 >>>>>>> 819e0cdcbcf45474e666054e066d233be0afc227
+=======
+>>>>>>> parent of 5f441fd... changed test_index to index
 
-      <div class="row">
-        <div class="small-12 column">
-          <h1>Historilyzr 
-            <small>What have you been up to?</small></h1>
-        </div>
-      </div>   
 
-      <div class="full-section" id="d3-region">
-      </div>
-  
-      <div class="row" id="footer-bar">
-          Made by Andrew He and Sean Kallungal. HackGT2014
-      </div>
-    
-  </div>
 
       //Original data
       var dataset = {
@@ -162,6 +150,7 @@
         .attr("r", function (d) {return d.radius;})
         .style("fill", function(d) {return d.color;})
 
+<<<<<<< HEAD
     circles
         .transition()
         .attr("cx",function (d) {return d.x_axis + 50;})
@@ -171,5 +160,31 @@
 */
   </script>
 >>>>>>> 819e0cdcbcf45474e666054e066d233be0afc227
+=======
+    <script>
+  		circleRadii = [40, 20, 10]
+ 
+ 		var svgContainer = d3.select("body").append("svg")
+                                     .attr("width", 600)
+                                     .attr("height", 100);
+ 
+		var circles = svgContainer.selectAll("circle")
+                           .data(circleRadii)
+                           .enter()
+                          .append("circle")
+
+		var circleAttributes = circles
+                       .attr("cx", 50)
+                       .attr("cy", 50)
+                      .attr("r", function (d) { return d; })
+                       .style("fill", function(d) {
+                         var returnColor;
+                         if (d === 40) { returnColor = "green";
+                         } else if (d === 20) { returnColor = "purple";
+                         } else if (d === 10) { returnColor = "red"; }
+                         return returnColor;
+                       });
+  	</script>
+>>>>>>> parent of 5f441fd... changed test_index to index
   </body>
 </html>
