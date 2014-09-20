@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "History Visualizer",
-  "description": "Creates snazzy visualizations of your browsing history.",
-  "version": "0.1",
+  "name": "Historilyzr",
+  "description": "Your history's a story; don't make it boring!",
+  "version": "0.1.1",
 
   "permissions": [
     "history",
@@ -13,6 +13,10 @@
   "browser_action": {
     "default_icon": "placeholder-icon.png",
     "default_popup": "popup.html"
+  },
+
+  "icons": {
+    "128": "placeholder-icon.png"
   }
 
 
