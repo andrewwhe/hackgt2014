@@ -28,3 +28,10 @@ body {
   width: 100%;
   background: #0F0F0F;
 }
+
+#footer-bar {
+  height: 100px;
+  padding-top: 30px;
+  text-align: center;
+  color: #ffffff;
+}
