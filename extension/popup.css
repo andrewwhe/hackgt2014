@@ -1,0 +1,30 @@
+
+body {
+  height: 200px;
+  width: 400px;
+  font-family: 'Open Sans';
+  background: #1E1F1E;
+  color: #ffffff;
+}
+
+
+#wrapper {
+  padding-top: 10px;
+  text-align: center;
+}
+
+#app-button {
+  font-family: 'Open Sans';
+  background: #FFB80D;
+  color: #1E1F1E;
+  border: 0;
+  height: 60px;
+  width: 250px;
+  padding: 20px;
+  transition-duration: 0.3s;
+}
+
+#app-button:hover {
+  transition-duration: 0.3s;
+  background: #BF8A0A;
+}
