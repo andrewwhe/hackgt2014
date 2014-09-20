@@ -4,11 +4,13 @@ Historilyzr
 A chrome extension that presents your browser history in an aesthetic and
 functionally unique manner.
 
-Made for HackGT 2014 by Andrew He and Sean Kallungal.
+## Features
+### Done
+- visualize most frequented sites by sphere size
 
-Gameplan:
-- get historyitems
-- parse url's, remove after "www.*."
-- sort data and get count of site occurences
-- create nodes for each website
-- fuck bitches
+### Future
+- list most common sites
+- newtab that allows a keyboard shortcut to most common sites
+- other visualizations (most recent sites?)
+
+Made for HackGT 2014 by Andrew He and Sean Kallungal.
