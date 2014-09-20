@@ -15,40 +15,34 @@
       //Original data
       var dataset = {
         nodes: [
-          { name: "facebook.com" },
-          { name: "imgur.com" },
-          { name: "reddit.com" },
-          { name: "myspace" },
-          { name: "blah" },
-          { name: "hi" },
-          { name: "bye" },
-          { name: "sean" },
-          { name: "yas" },
-          { name: "butts" }
+          { "name": "facebook.com" },
+          { "name": "imgur.com" },
+          { "name": "reddit.com" },
+          { "name": "myspace" },
+          { "name": "blah" },
+          { "name": "hi" },
+          { "name": "bye" },
+          { "name": "sean" },
+          { "name": "yas" },
+          { "name": "butts" }
         ],
         edges: [
-          { source: 0, target: 1 },
-          { source: 0, target: 2 },
-          { source: 0, target: 3 },
-          { source: 0, target: 4 },
-          { source: 1, target: 5 },
-          { source: 2, target: 5 },
-          { source: 2, target: 5 },
-          { source: 3, target: 4 },
-          { source: 5, target: 8 },
-          { source: 5, target: 9 },
-          { source: 6, target: 7 },
-          { source: 7, target: 8 },
           
         ],
         circleRadii: [20, 40, 65, 71, 100, 23, 10, 45, 76, 60]
       };
-
+      /*
+      var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, 0])
+            .html(function(d) {
+                  return "<strong>Frequency:</strong> <span style='color:red'>" + "50" + "</span>";})
+      */
       var force = d3.layout.force()
                  .nodes(dataset.nodes)
                  .links(dataset.edges)
                  .size([w, h])
-                 .linkDistance([120])
+                 .linkDistance([200])
                  .charge([-1000])
                  .start();
 
@@ -58,6 +52,7 @@
             .append("svg")
             .attr("width", w)
             .attr("height", h);
+      //svg.call(tip);
       
       var edges = svg.selectAll("line")
         .data(dataset.edges)
@@ -76,7 +71,13 @@
           return colors(i);
         })
         .call(force.drag);
-      
+      nodes.append("svg:text")
+          .data(dataset.nodes)
+          .text(function(d) { return d.name;})
+          .style("font-size", 12)
+          .style("fill", "#555");
+         // .style("text-anchor", "middle");
+          
       
       force.on("tick", function() {
 
