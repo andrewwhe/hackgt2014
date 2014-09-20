@@ -1,9 +1,10 @@
-hackgt2014
+Historilyzr
 ==========
 
-HackGT 2014
+A chrome extension that presents your browser history in an aesthetic and
+functionally unique manner.
 
-Andrew He and Sean Kallungal.
+Made for HackGT 2014 by Andrew He and Sean Kallungal.
 
 Gameplan:
 - get historyitems
