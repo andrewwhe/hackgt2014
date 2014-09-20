@@ -32,9 +32,42 @@
       </div>   
 
       <div class="full-section" id="d3-region">
+        
       </div>
   
     </div>
+<script>
+    //The data for our line
+          circles = [ 
+              { "x_axis": 30, "y_axis": 50, "radius": 40, "color" : "green" },
+              { "x_axis": 70, "y_axis": 120, "radius": 20, "color" : "purple"}, 
+              { "x_axis": 110, "y_axis": 30, "radius": 50, "color" : "red"},
+              { "x_axis": 130, "y_axis": 200, "radius": 70, "color" : "orange"},
+              { "x_axis": 300, "y_axis": 400, "radius": 100, "color" : "blue"}];
 
+
+ 
+          var svgContainer = d3.select("body").append("svg")
+              .attr("width", 600)
+              .attr("height", 600)
+              .style("border", "1px solid black");
+
+          var circles = svgContainer.selectAll("circle")
+              .data(circles)
+              .enter()
+              .append("circle")
+
+          var circleAttributes = circles
+              .attr("href", "http://google.com")
+              .attr("cx", function (d) { return d.x_axis; })
+              .attr("cy", function (d) {return d.y_axis;})
+              .attr("r", function (d) {return d.radius;})
+              .style("fill", function(d) {return d.color;})
+
+          circles
+              .transition()
+              .attr("cx",function (d) {return d.x_axis + 50;})
+              .duration(1000)
+        </script>
   </body>
 </html>
