@@ -2,8 +2,8 @@ var hist;
 
 $(document).ready(function() {
 	 //Original data
-     var w = 1200;
-     var h = 1200;
+     var w = window.innerWidth;
+     var h = 600;
       var dataset = {
         nodes: [
           { "name": "facebook.com" },
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
       var colors = d3.scale.category10();
 
-      var svg = d3.select("body")
+      var svg = d3.select("#d3-region")
             .append("svg")
             .attr("width", w)
             .attr("height", h);
@@ -84,7 +84,7 @@ $(document).ready(function() {
       });
   hist = chrome.history.search({"text": "", "maxResults": 10000}, 
     function(historyItems) {
-      alert(historyItems.length);
+      //alert(historyItems.length);
       console.log(JSON.stringify(historyItems));
     });
 
