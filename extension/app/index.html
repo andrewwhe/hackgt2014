@@ -19,11 +19,6 @@
     <div class="wrapper"> 
   
       <div class="header-bar">
-        <div class="row">  
-          <div class="small-12 column">
-          
-          </div>
-        </div>
       </div> 
 
       <div class="row">
@@ -35,6 +30,14 @@
 
       <div class="full-section" id="lol">
         <div class="selector-bar">
+          <div id="tooltip">
+            ?
+          </div>
+          <div id="tooltip-area">
+            <h5>Welcome to Historilyzr. This nifty app gives you some cool information about your browsing habits.</h5>
+            <h6>Frequency Graph - Generates circles for sites based on number of visits. In the sidebar, the numbers listed next to each domain is the number of visits and then the percent of total visits. Click and drag the circles!</h6>
+            <h6>Daily Use Graph - Shows your website traffic over the day. Nifty to see when you use the internet the most - hopefully it's not at 4am!</h6>
+          </div>
           <div class="row">
             <a>
             <div class="small-6 column sbutton selected" id="o1">
@@ -44,14 +47,17 @@
               Daily Use
             </div>
             </a>
-          </div>
+         </div>
         </div>
-        
+
+
+  
         <div id="sidebar">
+
         </div>
         <div id="d3-region-1">
         </div>
-        <div id="d3-region-2">
+        <svg id="d3-region-2" height="600" width="100%"></svg>
         </div>
       </div>
   

@@ -25,7 +25,16 @@ $(document).ready(function() {
         break;
     }
   }
-);
+  );
+
+  $("#tooltip-area").hide();
+  $("#tooltip").hover( function() {
+    $("#tooltip-area").show();
+  },
+  function() {
+    $("#tooltip-area").hide();
+  });
+
 });
 
 

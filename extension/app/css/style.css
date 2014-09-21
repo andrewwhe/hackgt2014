@@ -28,6 +28,48 @@ body {
   background: #0F0F0F;
 }
 
+#tooltip {
+  position: absolute;
+  top:15px;
+  right:20px;
+  height: 30px;
+  width: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 1px solid #4b4c49;
+  color: #4b4c49;
+  padding-left: 0px;
+  padding-top: 2px;
+}
+#tooltip:hover {
+  border-color: #f3f3f3;
+  color: #f3f3f3;
+}
+
+#tooltip-area {
+  text-align: left;
+  padding: 5px;
+  position: absolute;
+  top: -190px;
+  right: 20px;
+  height: 180px;
+  width: 350px;
+  z-index: 500;
+  background: rgba(0,0,0,0.8); 
+}
+#tooltip-area h5 {
+  font-size: 14px;
+  color: #ffffff;
+}
+#tooltip-area h6 {
+  font-size: 12px;
+  color: #ffffff;
+}
+#tooltip-area small {
+  font-size: 12px;
+}
+
 #footer-bar {
   height: 100px;
   padding-top: 30px;
@@ -98,3 +140,27 @@ body {
   border-radius: 5px;
 }
 
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crsipEdges;
+}
+
+.area {
+  fill: steelblue;
+}
+
+.axis text {
+  font-family: "Open Sans" !important;
+  font-size: 16px;
+}
+
+.tick {
+  stroke-dasharray: 1,2;
+}
+
+.bar {
+  fill: FireBrick;
+}
