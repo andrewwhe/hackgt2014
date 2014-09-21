@@ -32,7 +32,17 @@ body {
   height: 100px;
   padding-top: 30px;
   text-align: center;
-  color: #ffffff;
+  color: #414240;
+
+}
+#footer-bar a {
+  color: #4B4C49;
+  transition-duration: 0.2s;
+  font-weight: bold;
+}
+#footer-bar a:hover {
+  color: #FFB80D;
+  transition-duration: 0.2s;
 }
 
 .selector-bar {
@@ -42,9 +52,14 @@ body {
   text-align: center;
   height: 60px;
   background: rgba(0,0,0,0.6);
-
+}
+.selector-bar a {
   color: #876207;
 }
+.selector-bar a:hover {
+  color: #876207;
+}
+
 .selector-bar .small-4 {
   height: 60px;
   padding-top: 15px;
