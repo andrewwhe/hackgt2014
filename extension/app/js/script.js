@@ -6,6 +6,7 @@ $(document).ready(function() {
 	var normalized_visited = [];
     var visited = [];
 	var sorted = [];
+  var percents = [];
 
 	// regex for parsing
 	var patt = /(.com|.org|.io|.me|.gov|.edu|.net)(.*)/
@@ -127,7 +128,7 @@ $(document).ready(function() {
         .call(force.drag).on("mouseover", fade(.2)).on("mouseout", fade(1));;
 
  nodes.append("title").data(urls)
-      .text(function(d) { return d + " - " +
+      .text(function(d) { percents.push(visited[urls.indexOf(d)]/sum() * 100); return d + " - " +
        (visited[urls.indexOf(d)]/sum() * 100) + "%"; });
         /*
       nodes.append("svg:text")
@@ -152,7 +153,7 @@ $(document).ready(function() {
 
       
       for (var i=0; i<10; i++) {
-        $("#sidebar").append("<h5 id='link" + i + "' style='color: " + colors(i)  +"'>" + (i+1) + ". " + urls[i]);
+        $("#sidebar").append("<h5 id='link" + i + "' style='color: " + colors(i)  +"'>" + (i+1) + ". " + urls[i] + "<small> "+visited[i]+" : " + Math.ceil(percents[i])+ "%</small></h5>");
       }
   
 
@@ -165,13 +166,12 @@ $(document).ready(function() {
       	return sum;
       }
       function fade(opacity) {
-
           return function(d, i) {
             $("#link"+i).css("background", colors(i)).css("color", "#FFFFFF");
             nodes.style("stroke-opacity", function(o, f) {
                 thisOpacity =  i === f ? 1 : opacity;
                  
-                if (i != f) {
+                if (i != f || opacity == 1) {
                   $("#link"+f).css("background", "none").css("color", colors(f));
                 }
                   
@@ -183,7 +183,25 @@ $(document).ready(function() {
                 return thisOpacity;
             }); 
         };
-    }
+    } 
+    $("h5").hover( function() {
+      var index = (this.id).substring(4, 5);
+      $(this).css("background", colors(index)).css("color", "#FFFFFF");
+      var circles = d3.selectAll("circle");
+      for (var i=0; i<10; i++) {
+        if (i != index)
+          circles[0][i].setAttribute('fill-opacity', 0.1);
+      }
+      circles[0][index].setAttribute('fill-opacity', 1);
+    },
+    function() {
+      var index = (this.id).substring(4, 5);
+      $(this).css("background", "none").css("color", colors(index));
+      var circles = d3.selectAll("circle");
+      for (var i=0; i<10; i++) {
+        circles[0][i].setAttribute('fill-opacity', 1);
+      }
+    });
 
 });
 
