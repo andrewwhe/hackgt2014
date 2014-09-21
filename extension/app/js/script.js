@@ -113,7 +113,7 @@ $(document).ready(function() {
         .style("stroke", "#ccc")
         .style("stroke-width", 1);
       
-      var nodes = svg.selectAll("circle")
+      var nodes = svg.selectAll(".node")
         .data(normalized_visited)
         .enter()
         .append("circle")
@@ -123,6 +123,9 @@ $(document).ready(function() {
           return colors(i);
         })
         .call(force.drag);
+
+ nodes.append("title").data(urls)
+      .text(function(d) { return d; });
         /*
       nodes.append("svg:text")
           .data(dataset.nodes)
