@@ -18,6 +18,7 @@ $(document).ready(function() {
     	sorted = historyItems.slice(6).sort(function(a,b){
     		return a.visitCount - b.visitCount;
     	});
+    	alert(sorted[0].lastVisitTime);
     	//console.log(JSON.stringify(sorted[0]));
     	var count = 0;
     	for (var i = sorted.length - 1, len = 0; i > len; i--){
@@ -128,8 +129,8 @@ $(document).ready(function() {
         .call(force.drag).on("mouseover", fade(.2)).on("mouseout", fade(1));;
 
  nodes.append("title").data(urls)
-      .text(function(d) { percents.push(visited[urls.indexOf(d)]/sum() * 100); return d + " - " +
-       (visited[urls.indexOf(d)]/sum() * 100) + "%"; });
+      .text(function(d) { return d + " - " +
+       (Math.round((visited[urls.indexOf(d)]/sum() + 0.00001) * 100)) + "%"; });
         /*
       nodes.append("svg:text")
           .data(dataset.nodes)
