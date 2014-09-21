@@ -155,10 +155,13 @@ body {
 .axis text {
   font-family: "Open Sans" !important;
   font-size: 16px;
+  color: #ffb80d;
 }
 
 .tick {
+  stroke: #ffb80d;
   stroke-dasharray: 1,2;
+  fill: #ffb80d;
 }
 
 .bar {
