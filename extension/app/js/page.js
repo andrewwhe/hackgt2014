@@ -1,6 +1,7 @@
 var twoIsLoaded = false;
 
 $(document).ready(function() {
+  $("#d3-region-2").hide();
   draw_circles();
   $(".sbutton").click(
   function() {
