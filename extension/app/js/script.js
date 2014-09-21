@@ -150,6 +150,12 @@ $(document).ready(function() {
   
       });
 
+      
+      for (var i=0; i<10; i++) {
+        $("#sidebar").append("<h5 id='link" + i + "' style='color: " + colors(i)  +"'>" + (i+1) + ". " + urls[i]);
+      }
+  
+
       function sum(){
       	var sum = 0;
       	for (var i = 0; i < visited.length; i++){
@@ -159,14 +165,23 @@ $(document).ready(function() {
       	return sum;
       }
       function fade(opacity) {
-        return function(d, i) {
+
+          return function(d, i) {
+            $("#link"+i).css("background", colors(i)).css("color", "#FFFFFF");
             nodes.style("stroke-opacity", function(o, f) {
                 thisOpacity =  i === f ? 1 : opacity;
-                this.setAttribute('fill-opacity', thisOpacity);
-                return thisOpacity;
-            });
+                 
+                if (i != f) {
+                  $("#link"+f).css("background", "none").css("color", colors(f));
+                }
+                  
 
-          
+                this.setAttribute('fill-opacity', thisOpacity);
+
+                var set = false;
+
+                return thisOpacity;
+            }); 
         };
     }
 
