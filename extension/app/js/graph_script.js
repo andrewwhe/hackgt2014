@@ -57,9 +57,9 @@ function draw_graph()  {
     WIDTH = window.innerWidth,
     HEIGHT = 600,
     MARGINS = {
-      top: 20,
+      top: 70,
       right: 20,
-      bottom: 20,
+      bottom: 70,
       left: 50
     };
 
