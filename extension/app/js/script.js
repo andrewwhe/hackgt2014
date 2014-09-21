@@ -122,7 +122,7 @@ $(document).ready(function() {
         .style("fill", function(d, i) {
           return colors(i);
         })
-        .call(force.drag);
+        .call(force.drag).on("mouseover", fade(.1)).on("mouseout", fade(1));;
 
  nodes.append("title").data(urls)
       .text(function(d) { return d; });
@@ -146,6 +146,17 @@ $(document).ready(function() {
            .attr("cy", function(d) { return d.y; });
   
       });
+      function fade(opacity) {
+        return function(d) {
+            nodes.style("stroke-opacity", function(o) {
+                thisOpacity =  o.source === d || o.target === d ? 1 : opacity;
+                this.setAttribute('fill-opacity', thisOpacity);
+                return thisOpacity;
+            });
+
+          
+        };
+    }
 
 });
 
