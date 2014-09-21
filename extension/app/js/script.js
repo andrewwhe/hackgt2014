@@ -51,17 +51,19 @@ $(document).ready(function() {
 	   	}
 	   	visited = temp_count.slice();
 	   	urls = temp_url.slice();
+	   	
 	   	for (i = 0; i < count; i++){
-	   		if (visited[i] > 150){
-	   			normalized_visited[i] = 150;
-	   		}
+	   		if (visited[i] < 25){
+	   			normalized_visited[i] = 25;
+	   		}/*
 	   		else if (visited[i] < 30){
 	   			normalized_visited[i] = 30;
-	   		}
+	   		}*/
 	   		else{
 	   			normalized_visited[i] = visited[i];
 	   		}
 	   	}
+	   	
     
      var w = window.innerWidth;
      var h = 600;
@@ -122,10 +124,11 @@ $(document).ready(function() {
         .style("fill", function(d, i) {
           return colors(i);
         })
-        .call(force.drag).on("mouseover", fade(.1)).on("mouseout", fade(1));;
+        .call(force.drag).on("mouseover", fade(.2)).on("mouseout", fade(1));;
 
  nodes.append("title").data(urls)
-      .text(function(d) { return d; });
+      .text(function(d) { return d + " - " +
+       (visited[urls.indexOf(d)]/sum() * 100) + "%"; });
         /*
       nodes.append("svg:text")
           .data(dataset.nodes)
@@ -146,6 +149,15 @@ $(document).ready(function() {
            .attr("cy", function(d) { return d.y; });
   
       });
+
+      function sum(){
+      	var sum = 0;
+      	for (var i = 0; i < visited.length; i++){
+      		sum += visited[i];
+      	}
+
+      	return sum;
+      }
       function fade(opacity) {
         return function(d, i) {
             nodes.style("stroke-opacity", function(o, f) {
