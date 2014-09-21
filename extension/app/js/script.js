@@ -1,6 +1,6 @@
 var hist;
 
-$(document).ready(function() {
+function draw_circles(){
 	// tops urls and visit counts init
 	var urls = [];
 	var normalized_visited = [];
@@ -103,7 +103,7 @@ $(document).ready(function() {
 
       var colors = d3.scale.category10();
 
-      var svg = d3.select("#d3-region")
+      var svg = d3.select("#d3-region-1")
             .append("svg")
             .attr("width", w)
             .attr("height", h);
@@ -205,4 +205,4 @@ $(document).ready(function() {
 
 });
 
-});
+}

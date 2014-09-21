@@ -60,17 +60,17 @@ body {
   color: #876207;
 }
 
-.selector-bar .small-4 {
+.selector-bar .small-6 {
   height: 60px;
   padding-top: 15px;
   transition-duration: 0.5s;
 }
-.selector-bar .small-4.selected {
+.selector-bar .small-6.selected {
   background: rgba(0,0,0, 0.8);
   color: #FFB80D;
   border-bottom: 3px solid #FFB80D;
 }
-.selector-bar .small-4:hover {
+.selector-bar .small-6:hover {
   background: rgba(0,0,0, 0.8);
   color: #FFB80D;
 }

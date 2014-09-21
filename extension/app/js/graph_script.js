@@ -1,5 +1,4 @@
-var hist;
-$(document).ready(function() {
+function draw_graph()  {
   // tops urls and visit counts init
   var urls = [];
   var normalized_visited = [];
@@ -54,9 +53,9 @@ $(document).ready(function() {
             .attr("width", 1000)
             .attr("height", 500);
 */
-  var vis = d3.select("#visualisation"),
-    WIDTH = 1200,
-    HEIGHT = 700,
+  var vis = d3.select("#d3-region-2"),
+    WIDTH = window.innerWidth,
+    HEIGHT = 600,
     MARGINS = {
       top: 20,
       right: 20,
@@ -145,4 +144,4 @@ function getInterpolation(data) {
   }
 
     });
-});
+}

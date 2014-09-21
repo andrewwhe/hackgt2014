@@ -1,21 +1,31 @@
-$(".sbutton").click(
+var twoIsLoaded = false;
+
+$(document).ready(function() {
+  draw_circles();
+  $(".sbutton").click(
   function() {
     switch(this.id) {
       case 'o1':
         $("#o1").addClass("selected");
         $("#o2").removeClass("selected");
-        $("#o3").removeClass("selected");
+        $("#sidebar").show();
+        $("#d3-region-1").show();
+        $("#d3-region-2").hide();
         break;
       case 'o2':
+        if (!twoIsLoaded) {
+          draw_graph();
+          twoIsLoaded = true;
+        }
         $("#o1").removeClass("selected");
         $("#o2").addClass("selected");
-        $("#o3").removeClass("selected");
-        break;
-      case 'o3':
-        $("#o1").removeClass("selected");
-        $("#o2").removeClass("selected");
-        $("#o3").addClass("selected");
+        $("#sidebar").hide();
+        $("#d3-region-1").hide();
+        $("#d3-region-2").show();
         break;
     }
   }
 );
+});
+
+

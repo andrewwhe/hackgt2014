@@ -11,7 +11,8 @@
     
     <script type="text/javascript" src="js/vendor/modernizr.js"></script>
     <script type="text/javascript" src="d3.min.js"></script>
-     
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/graph_script.js"></script>
   </head>
   <body>
 
@@ -32,18 +33,15 @@
         </div>
       </div>   
 
-      <div class="full-section" id="d3-region">
+      <div class="full-section" id="lol">
         <div class="selector-bar">
           <div class="row">
             <a>
-            <div class="small-4 column sbutton" id="o1">
-              Option 1
-            </div>
-            <div class="small-4 column sbutton selected" id="o2">
+            <div class="small-6 column sbutton selected" id="o1">
               Frequency
             </div>
-            <div class="small-4 column sbutton" id="o3">
-              Option 2
+            <div class="small-6 column sbutton" id="o2">
+              Daily Use
             </div>
             </a>
           </div>
@@ -51,7 +49,10 @@
         
         <div id="sidebar">
         </div>
-        <script type="text/javascript" src="js/script.js"></script>
+        <div id="d3-region-1">
+        </div>
+        <div id="d3-region-2">
+        </div>
       </div>
   
       <div class="row" id="footer-bar">
