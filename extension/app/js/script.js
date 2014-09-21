@@ -3,8 +3,12 @@ var hist;
 $(document).ready(function() {
 	// tops urls and visit counts init
 	var urls = [];
+	var normalized_visited = [];
     var visited = [];
 	var sorted = [];
+
+	// regex for parsing
+	var patt = /(.com|.org|.io|.me|.gov|.edu|.net)(.*)/
     // gets whole history and sorts
 	chrome.history.search({"text": "", "maxResults": 10000}, 
     function(historyItems) {
@@ -15,16 +19,49 @@ $(document).ready(function() {
     	});
     	//console.log(JSON.stringify(sorted[0]));
     	var count = 0;
-    	for (var i = sorted.length - 1, len = sorted.length - 11; i > len; i--){
-    		temp_url.push(sorted[i].url);
-    		temp_count.push(sorted[i].visitCount);
-	      	console.log(temp_url[count]);
-	      	console.log(sorted[i].visitCount);
-	      	count++;
+    	for (var i = sorted.length - 1, len = 0; i > len; i--){
+    		var hold_re = sorted[i].url.split(patt)[2];
+    		if (hold_re == '/'){
+    			hold_string = sorted[i].url.substring(0,
+    				sorted[i].url.lastIndexOf("/"));
+    		}
+    		else{
+    			hold_string = sorted[i].url.replace(hold_re, '');
+    		}
+    		var changed = 0;
+    		for (var j = 0; j < count; j++){
+
+    			if (temp_url[j] == hold_string){
+    				temp_count[temp_url.indexOf(hold_string)] += sorted[i].visitCount;
+    				changed = 1;
+    				break;
+    			}
+    		}
+    		if (changed == 0){
+    			temp_url.push(hold_string);
+    			temp_count.push(sorted[i].visitCount);
+	      		console.log(temp_url[count]);
+	      		console.log(temp_count[count]);
+	      		count++;
+	      	}
+	      	if (count >= 10){
+	      		break;
+	      	}
+	      	
 	   	}
 	   	visited = temp_count.slice();
 	   	urls = temp_url.slice();
-	   	
+	   	for (i = 0; i < count; i++){
+	   		if (visited[i] > 150){
+	   			normalized_visited[i] = 150;
+	   		}
+	   		else if (visited[i] < 30){
+	   			normalized_visited[i] = 30;
+	   		}
+	   		else{
+	   			normalized_visited[i] = visited[i];
+	   		}
+	   	}
     
      var w = window.innerWidth;
      var h = 600;
@@ -77,7 +114,7 @@ $(document).ready(function() {
         .style("stroke-width", 1);
       
       var nodes = svg.selectAll("circle")
-        .data(visited)
+        .data(normalized_visited)
         .enter()
         .append("circle")
         .attr("r", function(d) { return d;})
