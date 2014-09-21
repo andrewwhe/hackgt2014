@@ -147,9 +147,9 @@ $(document).ready(function() {
   
       });
       function fade(opacity) {
-        return function(d) {
-            nodes.style("stroke-opacity", function(o) {
-                thisOpacity =  o.source === d || o.target === d ? 1 : opacity;
+        return function(d, i) {
+            nodes.style("stroke-opacity", function(o, f) {
+                thisOpacity =  i === f ? 1 : opacity;
                 this.setAttribute('fill-opacity', thisOpacity);
                 return thisOpacity;
             });
