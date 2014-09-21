@@ -5,8 +5,7 @@ function draw_graph()  {
   var times = [];
   var sorted = [];
 
-  // regex for parsing
-  var patt = /(.com|.org|.io|.me|.gov|.edu|.net)(.*)/
+  
     // gets whole history and sorts
   chrome.history.search({"text": "", "maxResults": 10000}, 
     function(historyItems) {
@@ -16,14 +15,15 @@ function draw_graph()  {
       sorted = historyItems.slice(6).sort(function(a,b){
         return a.visitCount - b.visitCount;
       });
+     // console.log(sorted[0]);
       for (var i = 0; i < sorted.length; i++){
-            times[i] = Math.floor(((sorted[i].lastVisitTime /1000)/60)%1440);
-            //console.log(times[i]);
+            times[i] = Math.floor(((sorted[i].lastVisitTime /1000)/(60*30)%48));
+           // console.log(times[i]);
       }
       times = times.sort(function(a,b){
         return a - b;
       });
-      console.log(times.length);
+      //console.log(times.length);
       for (i = 0; i < times.length; i++){
         changed = 0;
         for (var j = 0; j < counter; j++){
@@ -40,8 +40,8 @@ function draw_graph()  {
         }
       }
       times = temp_times;
-      console.log(times.length);
-      console.log(temp_count.length);
+     // console.log(times.length);
+     // console.log(temp_count.length);
 
       var lineData = [];
       for (i = 0; i < times.length; i++){
@@ -68,7 +68,7 @@ function draw_graph()  {
     .y0(HEIGHT)
     .y1(function(d) { return d.y; });
 
-    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 1440]);
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 48]);
 
     yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(lineData, function (d) {
         return d.y;
@@ -92,11 +92,15 @@ function draw_graph()  {
 
   vis.append("svg:g")
     .attr("class", "x axis")
+    .attr("stroke", "white")
+    .attr("fill", "white")
     .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
     .call(xAxis);
 
   vis.append("svg:g")
     .attr("class", "y axis")
+    .attr("stroke", "white")
+    .attr("fill", "white")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(yAxis);
 
@@ -113,7 +117,7 @@ vis.append('svg:path')//.attr("class", "area")
   .attr("stroke-width", 4)
   .attr("fill", "none")
   .transition()
-  .duration(3000)
+  .duration(4000)
   .attrTween('d', getInterpolation(lineData));
   /*
 vis.append("svg:path")

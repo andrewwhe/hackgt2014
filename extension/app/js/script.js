@@ -41,8 +41,8 @@ function draw_circles(){
     		if (changed == 0){
     			temp_url.push(hold_string);
     			temp_count.push(sorted[i].visitCount);
-	      		console.log(temp_url[count]);
-	      		console.log(temp_count[count]);
+	      		//console.log(temp_url[count]);
+	      		//console.log(temp_count[count]);
 	      		count++;
 	      	}
 	      	if (count >= 10){
@@ -98,7 +98,8 @@ function draw_circles(){
                  .links(dataset.edges)
                  .size([w, h])
                  .linkDistance([200])
-                 .charge([-1000])
+                 .charge([-1500])
+                 .gravity([.1])
                  .start();
 
       var colors = d3.scale.category10();
