@@ -11,7 +11,6 @@ body {
   font-size: 20px;
 }
 
-
 .wrapper h1 {
   margin-top: 0px !important;
   font-size: 70px;
@@ -34,4 +33,45 @@ body {
   padding-top: 30px;
   text-align: center;
   color: #ffffff;
+}
+
+.selector-bar {
+  position: absolute;
+  top: 195;
+  width: 100%;
+  text-align: center;
+  height: 60px;
+  background: rgba(0,0,0,0.6);
+
+  color: #876207;
+}
+.selector-bar .small-4 {
+  height: 60px;
+  padding-top: 15px;
+  transition-duration: 0.5s;
+}
+.selector-bar .small-4.selected {
+  background: rgba(0,0,0, 0.8);
+  color: #FFB80D;
+  border-bottom: 3px solid #FFB80D;
+}
+.selector-bar .small-4:hover {
+  background: rgba(0,0,0, 0.8);
+  color: #FFB80D;
+}
+
+
+#sidebar {
+  position: absolute;
+  top: 275px;
+  right: 50px; 
+  width: 300px;
+  height: 500px;
+  background: rgba(0,0,0, 0.6);
+
+  color: #FFB80D;
+  text-align: center;
+}
+#sidebar h2 {
+  color: #FFB80D;
 }
