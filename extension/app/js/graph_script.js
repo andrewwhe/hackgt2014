@@ -13,7 +13,7 @@ function draw_graph()  {
       var temp_times = [];
       var temp_count = [];
       var counter = 0;
-      console.log(historyItems.length)
+      //console.log(historyItems.length)
       //sorted = historyItems.slice(6).sort(function(a,b){
         //return a.visitCount - b.visitCount;
       //});
@@ -23,9 +23,9 @@ function draw_graph()  {
             times.push(x);
             
           //}
-         console.log(times[i]);
+         //console.log(times[i]);
       }
-      console.log(times.length);
+      //console.log(times.length);
       times = times.sort(function(a,b){
         return a - b;
       });
@@ -47,8 +47,8 @@ function draw_graph()  {
         }
       }
       times = temp_times;
-      console.log(times.length);
-      console.log(temp_count.length);
+      //console.log(times.length);
+      //console.log(temp_count.length);
 
       var lineData = [];
       for (i = 0; i < times.length; i++){
