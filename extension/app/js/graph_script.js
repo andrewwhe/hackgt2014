@@ -1,32 +1,39 @@
 function draw_graph()  {
   // tops urls and visit counts init
-  var urls = [];
-  var normalized_visited = [];
-  var times = [];
-  var sorted = [];
 
-  
+
+  // regex for parsing
+  var patt = /(.com|.org|.io|.me|.gov|.edu|.net)(.*)/
     // gets whole history and sorts
   chrome.history.search({"text": "", "maxResults": 10000}, 
     function(historyItems) {
-      temp_times = [];
-      temp_count = [];
-      counter = 0;
-      sorted = historyItems.slice(6).sort(function(a,b){
-        return a.visitCount - b.visitCount;
-      });
-     // console.log(sorted[0]);
-      for (var i = 0; i < sorted.length; i++){
-            times[i] = Math.floor(((sorted[i].lastVisitTime /1000)/(60*30)%48));
-           // console.log(times[i]);
+
+      var times = [];
+      var sorted = [];
+      var temp_times = [];
+      var temp_count = [];
+      var counter = 0;
+      console.log(historyItems.length)
+      //sorted = historyItems.slice(6).sort(function(a,b){
+        //return a.visitCount - b.visitCount;
+      //});
+      for (i = 0; i < historyItems.length; i++){
+        //if (historyItems[i].lastVisitTime > 0){
+            x = Math.floor(((historyItems[i].lastVisitTime/1000)/(60))%24);
+            times.push(x);
+            
+          //}
+         console.log(times[i]);
       }
+      console.log(times.length);
       times = times.sort(function(a,b){
         return a - b;
       });
-      //console.log(times.length);
+
+      counter = 0;
       for (i = 0; i < times.length; i++){
         changed = 0;
-        for (var j = 0; j < counter; j++){
+        for (j = 0; j < counter; j++){
           if (temp_times[j] == times[i]){
             temp_count[j] += 1;
             changed = 1;
@@ -34,14 +41,14 @@ function draw_graph()  {
           }
         }
         if (changed == 0){
-          temp_times[counter] = times[i];
-          temp_count[counter] = 1;
+          temp_times.push(times[i]);
+          temp_count.push(1);
           counter++;
         }
       }
       times = temp_times;
-     // console.log(times.length);
-     // console.log(temp_count.length);
+      console.log(times.length);
+      console.log(temp_count.length);
 
       var lineData = [];
       for (i = 0; i < times.length; i++){
@@ -57,9 +64,9 @@ function draw_graph()  {
     WIDTH = window.innerWidth,
     HEIGHT = 600,
     MARGINS = {
-      top: 70,
+      top: 20,
       right: 20,
-      bottom: 70,
+      bottom: 20,
       left: 50
     };
 
@@ -68,11 +75,9 @@ function draw_graph()  {
     .y0(HEIGHT)
     .y1(function(d) { return d.y; });
 
-    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 48]);
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 23]);
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(lineData, function (d) {
-        return d.y;
-      }),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,
       d3.max(lineData, function (d) {
         return d.y;
       })
@@ -92,15 +97,11 @@ function draw_graph()  {
 
   vis.append("svg:g")
     .attr("class", "x axis")
-    .attr("stroke", "white")
-    .attr("fill", "white")
     .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
     .call(xAxis);
 
   vis.append("svg:g")
     .attr("class", "y axis")
-    .attr("stroke", "white")
-    .attr("fill", "white")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(yAxis);
 
@@ -117,7 +118,7 @@ vis.append('svg:path')//.attr("class", "area")
   .attr("stroke-width", 4)
   .attr("fill", "none")
   .transition()
-  .duration(4000)
+  .duration(3000)
   .attrTween('d', getInterpolation(lineData));
   /*
 vis.append("svg:path")
@@ -137,7 +138,9 @@ function getInterpolation(data) {
           var weight = interpolate(t) - flooredX;
           var interpolatedLine = data.slice(0, flooredX);
               
-          if(flooredX > 0 && flooredX < 31) {
+          if(flooredX > 0 && flooredX < data.length) {
+              //console.log("flooredX: " + flooredX);
+              
               var weightedLineAverage = data[flooredX].y * weight + data[flooredX-1].y * (1-weight);
               interpolatedLine.push({"x":interpolate(t)-1, "y":weightedLineAverage});
               }

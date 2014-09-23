@@ -18,7 +18,7 @@ function draw_circles(){
     	sorted = historyItems.slice(6).sort(function(a,b){
     		return a.visitCount - b.visitCount;
     	});
-    	//console.log(JSON.stringify(sorted[0]));
+    	//console.log(sorted.length);
     	var count = 0;
     	for (var i = sorted.length - 1, len = 0; i > len; i--){
     		var hold_re = sorted[i].url.split(patt)[2];
@@ -54,6 +54,7 @@ function draw_circles(){
 	   	urls = temp_url.slice();
 	   	
 	   	for (i = 0; i < count; i++){
+        
 	   		if (visited[i] < 25){
 	   			normalized_visited[i] = 25;
 	   		}/*
