@@ -19,7 +19,7 @@ function draw_graph()  {
       //});
       for (i = 0; i < historyItems.length; i++){
         //if (historyItems[i].lastVisitTime > 0){
-            x = Math.floor(((historyItems[i].lastVisitTime/1000)/(60))%24);
+            x = Math.floor(((historyItems[i].lastVisitTime/1000)/(60*60))%24);
             times.push(x);
             
           //}
